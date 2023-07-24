@@ -15,7 +15,7 @@ module "eks_monitoring_logging" {
 
 ```
 
-#### Variables
+#### Variables:
 
 | Variable          | Type   | Description                                     | Default         |
 |-------------------|--------|-------------------------------------------------|-----------------|
@@ -30,7 +30,7 @@ module "eks_monitoring_logging" {
   - [cwagent](https://github.com/aws-samples/amazon-cloudwatch-container-insights/tree/main/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/cwagent)
   - [fluent-bit](https://github.com/aws-samples/amazon-cloudwatch-container-insights/tree/main/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/fluent-bit)
 
-#### Required providers and versions
+#### Required providers and versions:
 | Provider               | Version   |
 |------------------------|-----------|
 | [hashicorp/aws ](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) | >= 5.0    |
