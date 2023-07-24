@@ -1,26 +1,29 @@
 variable "cluster_name" {
-  type    = string
-  default = "kubecloud-eks-2"
+  type        = string
+  description = "EKS Cluster Name"
+  default     = null
 }
 
 variable "aws_region" {
-  type    = string
-  default = "ap-northeast-1"
+  type        = string
+  description = "Provide Cluster Region"
+  default     = null
 }
 
 variable "namespace" {
-  type    = string
-  default = "amazon-cloudwatch"
+  type        = string
+  description = "Name of namespace"
+  default     = "amazon-cloudwatch"
 }
 
 variable "enable_fluent_bit" {
   type        = bool
-  description = "Enable or Disable Fluent-bit on eks cluster"
+  description = "Enable or Disable Fluent-bit Agent on EKS cluster"
   default     = true
 }
 
 variable "enable_cwagent" {
   type        = bool
-  description = "Enable or disable Cloud Watch Agent on eks cluster"
+  description = "Enable or Disable Cloud Watch Agent on EKS cluster"
   default     = true
 }
