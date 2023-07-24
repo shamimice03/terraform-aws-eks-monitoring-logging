@@ -26,7 +26,7 @@ module "eks_monitoring_logging" {
 | enable_cwagent    | bool   | Enable or Disable Cloud Watch Agent on EKS cluster | true            |
 
 
-### Resources (Kubernetes manifests): 
+### Resources (kubernetes manifests): 
   - [cwagent](https://github.com/aws-samples/amazon-cloudwatch-container-insights/tree/main/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/cwagent)
   - [fluent-bit](https://github.com/aws-samples/amazon-cloudwatch-container-insights/tree/main/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/fluent-bit)
 
@@ -38,7 +38,7 @@ module "eks_monitoring_logging" {
 | hashicorp/http         | >= 3.4.0  |
 | gavinbunney/kubectl    | >= 1.14.0 |
 
-### Details of terraform providers
+### terraform provider docs:
 - [aws](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 - [http](https://registry.terraform.io/providers/hashicorp/http/latest/docs)
 - [kubernetes](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs)
