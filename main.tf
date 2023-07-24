@@ -1,8 +1,6 @@
 ########################################################
-# Prerequisite 
+# Prerequisite - Attach Cloud Watch Agent Server Policy with EKS Nodegroup Role
 ########################################################
-
-# Attach Cloud Watch Agent Server Policy with EKS Nodegroup Role
 
 data "aws_iam_role" "nodegroup_role" {
   name = "${var.cluster_name}-kubecloud-eks-nodegroup-public-role"
@@ -19,6 +17,7 @@ resource "aws_iam_role_policy_attachment" "cwa_server_policy" {
 
 ########################################################
 # Create Namespace 
+########################################################
 
 resource "kubernetes_namespace_v1" "amazon_cloudwatch" {
   metadata {
@@ -30,67 +29,27 @@ resource "kubernetes_namespace_v1" "amazon_cloudwatch" {
 #     CloudWatch Agent
 ##################################################################
 
-# Create Service Account, Cluster Role and Cluster Role Binding
+module "cwagent" {
 
-resource "kubectl_manifest" "cwagent_serviceaccount" {
-  for_each  = data.kubectl_file_documents.cwagent_docs.manifests
-  yaml_body = each.value
-}
+  source = "./modules/cwagent"
 
-##################################################################
-# Create CloudWatch Agent ConfigMap
+  enable_cwagent         = true
+  namespace              = "amazon-cloudwatch"
+  cluster_name           = "kubecloud-eks-2"
+  cwagent_configmap_name = "cwagentconfig"
 
-resource "kubernetes_config_map_v1" "cwagentconfig_configmap" {
-  metadata {
-    name      = var.cwagent_configmap_name
-    namespace = kubernetes_namespace_v1.amazon_cloudwatch.metadata[0].name
-  }
-
-  data = {
-    "cwagentconfig.json" = file("${path.module}/data/cwagentconfig.json")
-  }
-}
-
-##################################################################
-# Create Deamonset of CWagent
-
-resource "kubectl_manifest" "cwagent_daemonset" {
-  depends_on = [
-    kubernetes_namespace_v1.amazon_cloudwatch,
-    kubernetes_config_map_v1.cwagentconfig_configmap
-  ]
-  yaml_body = data.http.get_cwagent_daemonset.response_body
 }
 
 ##################################################################
 #     Fluent-Bit
 ##################################################################
-# Create FluentBit Agent ConfigMap
 
-resource "kubernetes_config_map_v1" "fluentbit_configmap" {
-  metadata {
-    name      = "fluent-bit-cluster-info"
-    namespace = kubernetes_namespace_v1.amazon_cloudwatch.metadata[0].name
-  }
-  data = {
-    "cluster.name" = var.cluster_name
-    "http.port"    = "2020"
-    "http.server"  = "On"
-    "logs.region"  = var.aws_region
-    "read.head"    = "Off"
-    "read.tail"    = "On"
-  }
-}
+module "fluent_bit" {
 
-##################################################################
-# Create FluentBit Agent Deamonset
+  source = "./modules/fluent-bit"
 
-resource "kubectl_manifest" "fluentbit_resources" {
-  depends_on = [
-    kubernetes_namespace_v1.amazon_cloudwatch,
-    kubernetes_config_map_v1.fluentbit_configmap,
-    kubectl_manifest.cwagent_daemonset
-  ]
-  for_each  = data.kubectl_file_documents.fluentbit_docs.manifests
-  yaml_body = each.value
+  enable_fluent_bit = true
+  cluster_name      = "kubecloud-eks-2"
+  aws_region        = "ap-northeast-1"
+  namespace         = "amazon-cloudwatch"
 }

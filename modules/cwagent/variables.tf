@@ -1,6 +1,6 @@
 variable "enable_cwagent" {
   type        = bool
-  description = "Enable or disable cloud watch agent on eks cluster"
+  description = "Enable or disable Cloud Watch Agent on eks cluster"
   default     = true
 }
 

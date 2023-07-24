@@ -1,8 +1,3 @@
-################################################
-#             CloudWatch Agent
-# 
-################################################
-
 ##################################################################
 #     Fluent-Bit
 # Datasource: https://github.com/aws-samples/amazon-cloudwatch-container-insights/tree/main/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/fluent-bit
@@ -27,16 +22,16 @@ data "kubectl_file_documents" "fluentbit_docs" {
 
 resource "kubernetes_config_map_v1" "fluentbit_configmap" {
   metadata {
-    name      = "fluent-bit-cluster-info"
-    namespace = kubernetes_namespace_v1.amazon_cloudwatch.metadata[0].name
+    name      = var.fluentbit_configmap_name
+    namespace = var.namespace
   }
   data = {
     "cluster.name" = var.cluster_name
-    "http.port"    = "2020"
-    "http.server"  = "On"
+    "http.port"    = var.fluent_bit_http_port
+    "http.server"  = var.fluent_bit_http_server
     "logs.region"  = var.aws_region
-    "read.head"    = "Off"
-    "read.tail"    = "On"
+    "read.head"    = var.fluent_bit_read_head
+    "read.tail"    = var.fluent_bit_read_tail
   }
 }
 

@@ -13,7 +13,14 @@ variable "namespace" {
   default = "amazon-cloudwatch"
 }
 
-variable "cwagent_configmap_name" {
-  type    = string
-  default = "cwagentconfig"
-} 
+variable "enable_fluent_bit" {
+  type        = bool
+  description = "Enable or Disable Fluent-bit on eks cluster"
+  default     = true
+}
+
+variable "enable_cwagent" {
+  type        = bool
+  description = "Enable or disable Cloud Watch Agent on eks cluster"
+  default     = true
+}
