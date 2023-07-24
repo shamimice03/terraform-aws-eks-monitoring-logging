@@ -1,6 +1,6 @@
 ## AWS Cloud Watch Container Insights Monitoring for EKS
 
-### Usage:
+#### Usage:
 ```hcl
 module "eks_monitoring_logging" {
     
@@ -15,7 +15,7 @@ module "eks_monitoring_logging" {
 
 ```
 
-### Variables
+#### Variables
 
 | Variable          | Type   | Description                                     | Default         |
 |-------------------|--------|-------------------------------------------------|-----------------|
@@ -26,20 +26,16 @@ module "eks_monitoring_logging" {
 | enable_cwagent    | bool   | Enable or Disable Cloud Watch Agent on EKS cluster | true            |
 
 
-### Resources (kubernetes manifests): 
+#### Resources (kubernetes manifests): 
   - [cwagent](https://github.com/aws-samples/amazon-cloudwatch-container-insights/tree/main/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/cwagent)
   - [fluent-bit](https://github.com/aws-samples/amazon-cloudwatch-container-insights/tree/main/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/fluent-bit)
 
-### Required providers and versions
+#### Required providers and versions
 | Provider               | Version   |
 |------------------------|-----------|
-| hashicorp/aws          | >= 5.0    |
-| hashicorp/kubernetes   | >= 2.21   |
-| hashicorp/http         | >= 3.4.0  |
-| gavinbunney/kubectl    | >= 1.14.0 |
+| [hashicorp/aws ](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) | >= 5.0    |
+| [hashicorp/kubernetes](https://registry.terraform.io/providers/hashicorp/http/latest/docs) |  >= 2.21   |
+| [hashicorp/http ](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs) | >= 3.4.0  |
+| [gavinbunney/kubectl](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs) | >= 1.14.0 |
 
-### terraform provider docs:
-- [aws](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
-- [http](https://registry.terraform.io/providers/hashicorp/http/latest/docs)
-- [kubernetes](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs)
-- [kubectl](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs)
+
