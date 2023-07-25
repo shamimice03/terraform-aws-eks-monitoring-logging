@@ -1,4 +1,4 @@
-## AWS EKS Monitoring and Logging [Using CloudWatch Container Insights](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContainerInsights.html) 
+## AWS EKS Monitoring and Logging (Using Container Insights)
 
 We must grant IAM permissions to enable Amazon EKS worker nodes to send metrics and logs to CloudWatch:
 
@@ -18,6 +18,7 @@ This terraform module provides an option to attach IAM Policy to EKS nodegroup r
   ]
 
 ```
+#### [More about CloudWatch Container Insights](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContainerInsights.html) 
 
 ## Usage:
 ### With IAM Policy attachment option:
