@@ -1,8 +1,4 @@
-##################################################################
-#     Fluent-Bit
-# Datasource: https://github.com/aws-samples/amazon-cloudwatch-container-insights/tree/main/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/fluent-bit
-##################################################################
-
+# Get Fluent-bit manifests
 data "http" "get_fluentbit_resources" {
   url = "https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/fluent-bit/fluent-bit.yaml"
   request_headers = {
@@ -10,7 +6,7 @@ data "http" "get_fluentbit_resources" {
   }
 }
 
-# This provider provides a data resource kubectl_file_documents to enable ease of splitting multi-document yaml content.
+# kubectl_file_documents to enable ease of splitting multi-document yaml content.
 data "kubectl_file_documents" "fluentbit_docs" {
   content = data.http.get_fluentbit_resources.response_body
 }
@@ -19,7 +15,6 @@ data "kubectl_file_documents" "fluentbit_docs" {
 #            Fluent Bit Installation
 ##################################################################
 # Create FluentBit Agent ConfigMap
-
 resource "kubernetes_config_map_v1" "fluentbit_configmap" {
   metadata {
     name      = var.fluentbit_configmap_name
@@ -37,7 +32,6 @@ resource "kubernetes_config_map_v1" "fluentbit_configmap" {
 
 ##################################################################
 # Create FluentBit Agent Deamonset
-
 resource "kubectl_manifest" "fluentbit_resources" {
 
   for_each  = data.kubectl_file_documents.fluentbit_docs.manifests

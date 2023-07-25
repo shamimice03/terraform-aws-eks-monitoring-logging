@@ -5,7 +5,6 @@
 
 | Variable                         | Type   | Description                                     | Default                                                                                     |
 |----------------------------------|--------|-------------------------------------------------|---------------------------------------------------------------------------------------------|
-| enable_cwagent                   | bool   | Enable or disable Cloud Watch Agent on EKS cluster | true                                                                                        |
 | cluster_name                     | string | EKS Cluster Name                                | null                                                                                        |
 | namespace                        | string | Name of namespace                               | null                                                                                        |
 | cwagent_configmap_name           | string | Name of the ConfigMap for the CloudWatch Agent  | cwagentconfig                                                                               |

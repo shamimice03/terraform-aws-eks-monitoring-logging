@@ -1,22 +1,16 @@
-#### Variables:
+### Resources (kubernetes manifests): 
+  - [fluent-bit](https://github.com/aws-samples/amazon-cloudwatch-container-insights/tree/main/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/fluent-bit)
 
-| Variable                          | Type    | Description                                      | Default                                                                                     |
-|-----------------------------------|---------|--------------------------------------------------|---------------------------------------------------------------------------------------------|
-| enable_fluent_bit                 | bool    | Enable or Disable Fluent-bit on EKS cluster      | true                                                                                        |
-| cluster_name                      | string  | EKS Cluster Name                                 | null                                                                                        |
-| aws_region                        | string  | Provide Cluster Region                          | null                                                                                        |
-| namespace                         | string  | Name of namespace                                | null                                                                                        |
-| fluent_bit_http_server            | string  | Enable or Disable fluent bit HTTP server        | On                                                                                          |
-| fluent_bit_http_port              | string  | Define fluent-bit HTTP Port                      | 2020                                                                                        |
-| fluent_bit_read_head              | string  | Enable or Disable fluent-bit Head read           | Off                                                                                         |
-| fluent_bit_read_tail              | string  | Enable or Disable fluent-bit Tail read           | On                                                                                          |
-| fluentbit_configmap_name          | string  | Name of the ConfigMap for Fluent Bit             | fluent-bit-cluster-info                                                                     |
-| fluentbit_daemonset_manifest_url  | string  | URL for the CloudWatch Agent DaemonSet manifest  | https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/cwagent/cwagent-daemonset.yaml |
+### Variables:
 
-
-```
-cluster_name      = "kubecloud-eks-2"
-aws_region        = "ap-northeast-1"
-namespace         = "amazon-cloudwatch"
-enable_fluent_bit = true
-```
+| Variable                          | Type   | Description                                       | Default                                                                                     |
+|-----------------------------------|--------|---------------------------------------------------|---------------------------------------------------------------------------------------------|
+| cluster_name                      | string | EKS Cluster Name. Provide the name of your EKS cluster. | null                                                                                        |
+| aws_region                        | string | Provide Cluster Region. Specify the AWS region where the EKS cluster is located. | null                                                                                        |
+| namespace                         | string | Name of namespace. Specify the Kubernetes namespace for the deployment. | null                                                                                        |
+| fluent_bit_http_server            | string | Enable or Disable fluent bit HTTP server. Set to 'On' to enable and 'Off' to disable. | On                                                                                          |
+| fluent_bit_http_port              | string | Define fluent-bit HTTP Port. Specify the port number for the fluent-bit HTTP server. | 2020                                                                                        |
+| fluent_bit_read_head              | string | Enable or Disable fluent-bit Head read. Set to 'On' to enable and 'Off' to disable. | Off                                                                                         |
+| fluent_bit_read_tail              | string | Enable or Disable fluent-bit Tail read. Set to 'On' to enable and 'Off' to disable. | On                                                                                          |
+| fluentbit_configmap_name          | string | Name of the ConfigMap for fluent-bit. Specify the name of the ConfigMap to use. | fluent-bit-cluster-info                                                                     |
+| fluentbit_daemonset_manifest_url  | string | URL for the fluent-bit DaemonSet manifest. Specify the URL for the deployment manifest. | https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/cwagent/cwagent-daemonset.yaml |

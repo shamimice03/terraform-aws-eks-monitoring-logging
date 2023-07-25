@@ -46,7 +46,7 @@ resource "kubernetes_config_map_v1" "cwagentconfig_configmap" {
 resource "kubectl_manifest" "cwagent_daemonset" {
 
   yaml_body = data.http.get_cwagent_daemonset.response_body
-  
+
   depends_on = [
     kubernetes_config_map_v1.cwagentconfig_configmap
   ]
