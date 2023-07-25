@@ -53,7 +53,6 @@ module "eks_monitoring_logging" {
     
     enable_cwagent    = true
     enable_fluent_bit = true
-
 }
 ```
 
@@ -66,7 +65,7 @@ module "eks_monitoring_logging" {
 | cluster_name          | string    | EKS Cluster Name                                | null              |
 | aws_region            | string    | Provide Cluster Region                         | null              |
 | namespace             | string    | Name of the namespace                           | amazon-cloudwatch |
-| nodegroup_roles       | list(any) | List of EKS nodegroup roles                     | []                |
+| nodegroup_roles       | list(any) | List of EKS nodegroup roles                     | [ ]                |
 
 ### Fluent Bit Variables:
 
