@@ -12,3 +12,11 @@
 | fluent_bit_read_tail              | string  | Enable or Disable fluent-bit Tail read           | On                                                                                          |
 | fluentbit_configmap_name          | string  | Name of the ConfigMap for Fluent Bit             | fluent-bit-cluster-info                                                                     |
 | fluentbit_daemonset_manifest_url  | string  | URL for the CloudWatch Agent DaemonSet manifest  | https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/cwagent/cwagent-daemonset.yaml |
+
+
+```
+cluster_name      = "kubecloud-eks-2"
+aws_region        = "ap-northeast-1"
+namespace         = "amazon-cloudwatch"
+enable_fluent_bit = true
+```

@@ -28,7 +28,6 @@ data "http" "get_cwagent_daemonset" {
 #             CloudWatch Agent Installation
 ##################################################################
 # Create Service Account, Cluster Role and Cluster Role Binding
-
 resource "kubectl_manifest" "cwagent_serviceaccount" {
   for_each  = data.kubectl_file_documents.cwagent_docs.manifests
   yaml_body = each.value
@@ -36,7 +35,6 @@ resource "kubectl_manifest" "cwagent_serviceaccount" {
 
 ##################################################################
 # Create CloudWatch Agent ConfigMap
-
 resource "kubernetes_config_map_v1" "cwagentconfig_configmap" {
   metadata {
     name      = var.cwagent_configmap_name
@@ -50,10 +48,11 @@ resource "kubernetes_config_map_v1" "cwagentconfig_configmap" {
 
 ##################################################################
 # Create Deamonset of CWagent
-
 resource "kubectl_manifest" "cwagent_daemonset" {
+
+  yaml_body = data.http.get_cwagent_daemonset.response_body
+
   depends_on = [
     kubernetes_config_map_v1.cwagentconfig_configmap
   ]
-  yaml_body = data.http.get_cwagent_daemonset.response_body
 }

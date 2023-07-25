@@ -19,7 +19,7 @@ variable "namespace" {
 variable "cwagent_configmap_name" {
   type    = string
   default = "cwagentconfig"
-} 
+}
 
 variable "cwagent_serviceaccount_manifest_url" {
   type        = string

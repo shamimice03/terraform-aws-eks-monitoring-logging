@@ -1,8 +1,8 @@
-variable "enable_fluent_bit" {
-  type        = bool
-  description = "Enable or Disable Fluent-bit on eks cluster"
-  default     = true
-}
+# variable "enable_fluent_bit" {
+#   type        = bool
+#   description = "Enable or Disable Fluent-bit on eks cluster"
+#   default     = true
+# }
 
 variable "cluster_name" {
   type        = string
