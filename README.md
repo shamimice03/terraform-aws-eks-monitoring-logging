@@ -9,13 +9,13 @@ We must grant IAM permissions to enable Amazon EKS worker nodes to send metrics 
 
 ### Using terraform:
 This terraform module provides an option to attach IAM Policy to EKS nodegroup roles : 
-```
+```hcl
 # Attach CloudWatchAgentServerPolicy to EKS nodegroup roles
 
-nodegroup_roles = [
-  "kubecloud-eks-private-nodegroup-role",
-  "kubecloud-eks-public-nodegroup-role",
-]
+  nodegroup_roles = [
+      "kubecloud-eks-private-nodegroup",
+      "kubecloud-eks-public-nodegroup",
+  ]
 
 ```
 
@@ -24,19 +24,19 @@ nodegroup_roles = [
 ```hcl
 module "eks_monitoring_logging" {
     
-    source = "github.com/shamimice03/terraform-aws-eks-monitoring-logging"
+    source = "shamimice03/eks-monitoring-logging/aws"
     
-    cluster_name      = "kubecloud-eks-3"
+    cluster_name      = "kubecloud-eks"
     aws_region        = "ap-northeast-1"
     namespace         = "amazon-cloudwatch"
 
-    enable_fluent_bit = true
     enable_cwagent    = true
+    enable_fluent_bit = true
     
     # Attach CloudWatchServerPolicy to EKS nodegroup roles
     nodegroup_roles = [
-      "kubecloud-eks-3-kubecloud-eks-nodegroup-private-role",
-      "kubecloud-eks-3-kubecloud-eks-nodegroup-public-role",
+      "kubecloud-eks-private-nodegroup",
+      "kubecloud-eks-public-nodegroup",
     ]
 }
 ```
@@ -45,14 +45,15 @@ module "eks_monitoring_logging" {
 ```hcl
 module "eks_monitoring_logging" {
     
-    source = "github.com/shamimice03/terraform-aws-eks-monitoring-logging"
+    source = "shamimice03/eks-monitoring-logging/aws"
     
-    cluster_name      = "kubecloud-eks-3"
+    cluster_name      = "kubecloud-eks"
     aws_region        = "ap-northeast-1"
     namespace         = "amazon-cloudwatch"
-
-    enable_fluent_bit = true
+    
     enable_cwagent    = true
+    enable_fluent_bit = true
+
 }
 ```
 
