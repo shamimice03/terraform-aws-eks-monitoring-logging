@@ -1,6 +1,6 @@
 # Get Fluent-bit manifests
 data "http" "get_fluentbit_resources" {
-  url = "https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/fluent-bit/fluent-bit.yaml"
+  url = var.fluentbit_daemonset_manifest_url
   request_headers = {
     Accept = "text/*"
   }

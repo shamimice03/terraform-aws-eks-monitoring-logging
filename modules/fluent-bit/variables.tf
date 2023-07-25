@@ -49,5 +49,5 @@ variable "fluentbit_configmap_name" {
 variable "fluentbit_daemonset_manifest_url" {
   type        = string
   description = "URL for the fluent-bit DaemonSet manifest. Specify the URL for the deployment manifest."
-  default     = "https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/cwagent/cwagent-daemonset.yaml"
+  default     = "https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/main/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/fluent-bit/fluent-bit.yaml"
 }
