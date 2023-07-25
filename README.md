@@ -1,14 +1,14 @@
-## AWS EKS Monitoring and Logging (Using Container Insights)
+# AWS EKS Monitoring and Logging (Using Container Insights)
 
-### Prerequisite
+## Prerequisite:
 We must grant IAM permissions to enable Amazon EKS worker nodes to send metrics and logs to CloudWatch:
 
-#### Manual Steps:
+### Manual Steps:
 - Attach AWS managed `CloudWatchAgentServerPolicy` to the IAM roles of the EKS worker nodes. 
 - Policy `ARN` : `arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy` 
 
 
-#### Using terraform:
+### Using terraform:
 This terraform module provides an option to attach IAM Policy to EKS nodegroup roles : 
 ```hcl
 # Attach CloudWatchAgentServerPolicy to EKS nodegroup roles
