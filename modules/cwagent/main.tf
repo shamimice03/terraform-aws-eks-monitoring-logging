@@ -1,9 +1,4 @@
-################################################
-#             CloudWatch Agent
-# Datasources :  https://github.com/aws-samples/amazon-cloudwatch-container-insights/tree/main/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/cwagent
-################################################
-
-# get serviceaccount manifest along with cluster role and cluster role binding 
+# Get serviceaccount manifest along with cluster role and cluster role binding 
 data "http" "get_cwagent_serviceaccount" {
   url = var.cwagent_serviceaccount_manifest_url
   request_headers = {
@@ -51,7 +46,7 @@ resource "kubernetes_config_map_v1" "cwagentconfig_configmap" {
 resource "kubectl_manifest" "cwagent_daemonset" {
 
   yaml_body = data.http.get_cwagent_daemonset.response_body
-
+  
   depends_on = [
     kubernetes_config_map_v1.cwagentconfig_configmap
   ]

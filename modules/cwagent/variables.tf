@@ -17,8 +17,9 @@ variable "namespace" {
 }
 
 variable "cwagent_configmap_name" {
-  type    = string
-  default = "cwagentconfig"
+  type        = string
+  description = "Name of the ConfigMap for the CloudWatch Agent"
+  default     = "cwagentconfig"
 }
 
 variable "cwagent_serviceaccount_manifest_url" {
